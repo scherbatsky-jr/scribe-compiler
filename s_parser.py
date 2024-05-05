@@ -10,10 +10,10 @@ def p_program(p):
 
 def p_statement_list(p):
     '''
-    statement_list : statement_list statement
-                   | statement
+    statement_list : statement_list statement SEMICOLON
+                   | statement SEMICOLON
     '''
-    if len(p) == 3:
+    if len(p) == 4:
         p[0] = p[1] + [p[2]]
     else:
         p[0] = [p[1]]
@@ -22,6 +22,7 @@ def p_statement(p):
     '''
     statement : print_statement
               | assignment_statement
+              | expression_statement
     '''
     p[0] = p[1]
 
@@ -32,6 +33,14 @@ def p_expression_paren(p):
 def p_print_statement(p):
     'print_statement : PRINT LPAREN expression RPAREN'
     p[0] = PrintNode(p[3])
+
+def p_expression_identifier(p):
+    'expression : IDENTIFIER'
+    p[0] = VarAccessNode(p[1])
+
+def p_expression_statement(p):
+    'expression_statement : expression'
+    p[0] = p[1]
 
 def p_assignment_statement(p):
     'assignment_statement : IDENTIFIER EQUALS expression'

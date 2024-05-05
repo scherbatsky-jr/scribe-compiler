@@ -4,13 +4,33 @@ class Interpreter:
     def __init__(self):
         self.environment = {}
 
+    # def visit(self, node):
+    #     if isinstance(node, NumNode):
+    #         return self.visit_NumNode(node)
+    #     elif isinstance(node, str):  # Handling strings directly if they slip through
+    #         return node
+    #     elif isinstance(node, int):
+    #         return node
+    #     else:
+    #         method_name = 'visit_' + type(node).__name__
+    #         visitor = getattr(self, method_name, self.generic_visit)
+    #         return visitor(node)
+
     def visit(self, node):
+        # Check if the node is a list of nodes and handle each item in the list
+        if isinstance(node, list):
+            return [self.visit(item) for item in node]
+
+        # Return the value directly if the node is a basic type (int, str)
+        # This avoids unnecessary method calls for simple types
+        if isinstance(node, (int, str)):
+            return node
+
+        # Dispatch to the appropriate visit method based on the type of node
         if isinstance(node, NumNode):
             return self.visit_NumNode(node)
-        elif isinstance(node, str):  # Handling strings directly if they slip through
-            return node
-        elif isinstance(node, int):
-            return node
+
+        # For all other types, use reflection to find the appropriate method
         else:
             method_name = 'visit_' + type(node).__name__
             visitor = getattr(self, method_name, self.generic_visit)
@@ -37,11 +57,18 @@ class Interpreter:
         return value
 
     def visit_VarAssignNode(self, node):
-        self.environment[node.name] = self.visit(node.value)
+        value = self.visit(node.value)
+        self.environment[node.name] = value
+        return value
+        print(f"Assigned {node.name} = {self.environment[node.name]}")
 
     def visit_VarAccessNode(self, node):
-        return self.environment.get(node.name, None)
-    
+        name = node.name
+        if name in self.environment:
+            return self.environment[name]
+        else:
+            raise NameError(f"Variable '{name}' not defined")
+        
     def visit_list(self, nodes):
         return [self.visit(node) for node in nodes]
 

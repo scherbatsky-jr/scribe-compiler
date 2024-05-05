@@ -20,3 +20,6 @@ class VarAssignNode:
 class VarAccessNode:
     def __init__(self, name):
         self.name = name
+
+    def execute(self, environment):
+        environment[self.name] = self.value.execute(environment)

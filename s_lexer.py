@@ -2,7 +2,7 @@ import ply.lex as lex
 
 tokens = (
     'NUMBER', 'IDENTIFIER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EQUALS',
-    'LPAREN', 'RPAREN', 'PRINT'
+    'LPAREN', 'RPAREN', 'PRINT', 'SEMICOLON'
 )
 
 t_PLUS    = r'\+'
@@ -13,6 +13,7 @@ t_EQUALS  = r'='
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_PRINT   = r'print'
+t_SEMICOLON = r';'
 
 reserved = {
     'print': 'PRINT',  # Map the keyword print to its token type
