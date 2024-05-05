@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scribe Language</title>
+    <style>
+        body {
+            margin: 0 !important;
+        }
+        .header {
+            background: black;
+            color: white;
+            padding: 1rem;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 1rem;
+            grid-gap: 1rem;
+        }
+
+        .code-input {
+            padding: 0.5rem;
+            height: 30rem !important;
+            width: 45rem !important;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Scribe Programming Language</h1>
+    </div>
+    <div class="content">
+        <form method="post">
+            <textarea name="code" rows="10" cols="50" class="code-input">{{ code }}</textarea><br>
+            <button type="submit">Run</button>
+        </form>
+        <div>
+            <h2>Output:</h2>
+            <pre>{{ output }}</pre>
+        </div>
+    </div>
+</body>
+</html>
