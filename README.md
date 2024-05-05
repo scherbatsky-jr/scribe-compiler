@@ -1,4 +1,4 @@
-# Simple Compiler
+# Scribe Programming Language
 
 Submitted by:
 Sunil Prajapati (st124073)
