@@ -2,7 +2,9 @@ import ply.lex as lex
 
 tokens = (
     'NUMBER', 'IDENTIFIER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EQUALS',
-    'LPAREN', 'RPAREN', 'PRINT', 'SEMICOLON'
+    'LPAREN', 'RPAREN', 'PRINT', 'SEMICOLON', 'LBRACE', 'RBRACE',
+    'GT', 'GTE', 'LT', 'LTE', 'EQUAL', 'NOTEQUAL',
+    'IF', 'ELSE', 'WHILE'
 )
 
 t_PLUS    = r'\+'
@@ -14,9 +16,20 @@ t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_PRINT   = r'print'
 t_SEMICOLON = r';'
+t_GT = r'>'
+t_GTE = r'>='
+t_LT = r'<'
+t_LTE = r'<='
+t_EQUAL = r'=='
+t_NOTEQUAL = r'!='
+t_LBRACE = r'\{'
+t_RBRACE = r'\}'
 
 reserved = {
-    'print': 'PRINT',  # Map the keyword print to its token type
+    'if': 'IF',
+    'else': 'ELSE',
+    'while': 'WHILE',
+    'print': 'PRINT',
 }
 
 t_ignore = ' \t'

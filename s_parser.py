@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from s_lexer import tokens
-from s_ast import NumNode, BinOpNode, PrintNode, VarAssignNode, VarAccessNode
+from s_ast import NumNode, BinOpNode, PrintNode, VarAssignNode, VarAccessNode, IfNode, WhileNode, RelationalNode
 
 def p_program(p):
     '''
@@ -23,8 +23,25 @@ def p_statement(p):
     statement : print_statement
               | assignment_statement
               | expression_statement
+              | if_statement
+              | while_statement
     '''
     p[0] = p[1]
+
+def p_block(p):
+    'block : LBRACE statement_list RBRACE'
+    p[0] = p[2]
+
+def p_relational_expression(p):
+    '''
+    expression : expression GT expression
+               | expression GTE expression
+               | expression LT expression
+               | expression LTE expression
+               | expression EQUAL expression
+               | expression NOTEQUAL expression
+    '''
+    p[0] = RelationalNode(p[1], p[2], p[3]) 
 
 def p_expression_paren(p):
     'expression : LPAREN expression RPAREN'
@@ -65,6 +82,21 @@ def p_expression_times(p):
 def p_expression_number(p):
     'expression : NUMBER'
     p[0] = p[1]
+
+def p_if_statement(p):
+    '''
+    if_statement : IF LPAREN expression RPAREN block
+                 | IF LPAREN expression RPAREN block ELSE block
+    '''
+    if len(p) == 6:
+        p[0] = IfNode(p[3], p[5])
+    else:
+        p[0] = IfNode(p[3], p[5], p[7])
+
+def p_while_statement(p):
+    'while_statement : WHILE LPAREN expression RPAREN block'
+    p[0] = WhileNode(p[3], p[5])
+
 
 # Ensure base cases for recursion:
 def p_expression_term(p):

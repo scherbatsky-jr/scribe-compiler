@@ -23,7 +23,7 @@ class Interpreter:
 
         # Return the value directly if the node is a basic type (int, str)
         # This avoids unnecessary method calls for simple types
-        if isinstance(node, (int, str)):
+        if isinstance(node, (int, str, float)):
             return node
 
         # Dispatch to the appropriate visit method based on the type of node
@@ -69,6 +69,38 @@ class Interpreter:
         else:
             raise NameError(f"Variable '{name}' not defined")
         
+    def visit_IfNode(self, node):
+        condition_value = self.visit(node.condition)
+        if condition_value:
+            return self.visit(node.then_branch)
+        elif node.else_branch is not None:
+            return self.visit(node.else_branch)
+
+    def visit_WhileNode(self, node):
+        while self.visit(node.condition):
+            self.visit(node.body)
+
+    def visit_RelationalNode(self, node):
+        left = self.visit(node.left)
+        right = self.visit(node.right)
+        if node.operator == '>':
+            return left > right
+        elif node.operator == '>=':
+            return left >= right
+        elif node.operator == '<':
+            return left < right
+        elif node.operator == '<=':
+            return left <= right
+        elif node.operator == '==':
+            return left == right
+        elif node.operator == '!=':
+            return left != right
+
+    def visit_Block(self, node):
+        for stmt in node.statements:
+            self.visit(stmt)
+
+
     def visit_list(self, nodes):
         return [self.visit(node) for node in nodes]
 
