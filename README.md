@@ -43,11 +43,12 @@ If Else Statement Example:
 This document outlines the syntax of a simple programming language using Backus-Naur Form (BNF) notation. This language supports basic arithmetic operations, printing, variable assignment, conditionals, and loops.
 
 ## Feature list
-- dynamic typing
-- precedence of operators
-- if-else-then statement 
-- boolean operation 
-- while loop
+- Dynamic typing (Int, Float and Boolean supported)
+- Precedence of operators
+- If-else-then statement 
+- Boolean operation
+- Relational Operations (Greater than, greater or equal to, less than, less than or equal to, equal to, not equal to)
+- While loop
 
 
 ## Terminals
