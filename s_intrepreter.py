@@ -42,14 +42,22 @@ class Interpreter:
     def visit_BinOpNode(self, node):
         left = self.visit(node.left)
         right = self.visit(node.right)
-        if node.op == '+':
-            return left + right
-        elif node.op == '-':
-            return left - right
-        elif node.op == '*':
-            return left * right
-        elif node.op == '/':
-            return left / right
+        if isinstance(left, int) and isinstance(right, float):
+            left = float(left)
+        elif isinstance(left, float) and isinstance(right, int):
+            right = float(right)
+            
+        if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+            if node.op == '+':
+                return left + right
+            elif node.op == '-':
+                return left - right
+            elif node.op == '*':
+                return left * right
+            elif node.op == '/':
+                return left / right
+        else:
+            raise TypeError("Unsupported operand types")
 
     def visit_PrintNode(self, node):
         value = self.visit(node.value)

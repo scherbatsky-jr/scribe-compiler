@@ -55,6 +55,22 @@ def p_expression_identifier(p):
     'expression : IDENTIFIER'
     p[0] = VarAccessNode(p[1])
 
+def p_expression_binary(p):
+    '''
+    expression : expression PLUS expression
+               | expression MINUS expression
+               | expression TIMES expression
+               | expression DIVIDE expression
+    '''
+    if p[2] == '+':
+        p[0] = BinOpNode(p[1], p[2], p[3])
+    elif p[2] == '-':
+        p[0] = BinOpNode(p[1], p[2], p[3])
+    elif p[2] == '*':
+        p[0] = BinOpNode(p[1], p[2], p[3])
+    elif p[2] == '/':
+        p[0] = BinOpNode(p[1], p[2], p[3])
+
 def p_expression_statement(p):
     'expression_statement : expression'
     p[0] = p[1]
@@ -102,6 +118,31 @@ def p_while_statement(p):
 def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
+
+# def p_term_factor(p):
+#     '''
+#     term : factor
+#          | term TIMES factor
+#          | term DIVIDE factor
+#     '''
+#     if len(p) == 2:
+#         p[0] = p[1]
+#     elif p[2] == '*':
+#         p[0] = BinOpNode(p[1], '*', p[3])
+#     elif p[2] == '/':
+#         p[0] = BinOpNode(p[1], '/', p[3])
+
+
+# def p_factor_number(p):
+#     '''
+#     factor : NUMBER
+#            | IDENTIFIER
+#            | LPAREN expression RPAREN
+#     '''
+#     if isinstance(p[1], NumNode) or isinstance(p[1], VarAccessNode):
+#         p[0] = p[1]
+#     else:
+#         p[0] = p[2]  # for expressions in parentheses
 
 def p_term_factor(p):
     'term : factor'
