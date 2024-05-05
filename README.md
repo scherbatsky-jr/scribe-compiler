@@ -4,6 +4,24 @@ Submitted by:
 Sunil Prajapati (st124073)
 Biraj Koirala (st124371)
 
+### Running the program
+Clone the repo using the command:
+
+`git clone git@github.com:scherbatsky-jr/scribe-compiler.git`
+
+Go into project directory:
+
+`cd scribe-compiler`
+
+Install the packages:
+
+`pip install -r requirements.txt`
+
+Run the flask app using the command:
+
+`python main.py`
+
+The app will be running at `http://locolhost:5000`
 
 
 # Syntax Documentation for Simple Programming Language
