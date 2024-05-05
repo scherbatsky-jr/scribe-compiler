@@ -16,7 +16,7 @@
 
         .content {
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: auto auto auto;
             padding: 1rem;
             grid-gap: 1rem;
         }
@@ -25,7 +25,24 @@
             padding: 0.5rem;
             height: 30rem !important;
             width: 45rem !important;
-            
+        }
+
+        .examples {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-button {
+            cursor: pointer;
+            margin-bottom: 1rem;
+            padding: 0.25rem;
+            width: 10rem;
+        }
+
+        .run-button {
+            cursor: pointer;
+            padding: 0.25rem;
+            font-size: 1.25rem;
         }
     </style>
 </head>
@@ -34,14 +51,43 @@
         <h1>Scribe Programming Language</h1>
     </div>
     <div class="content">
+        <div class="examples">
+            <h3>Examples:</h3>
+            <button onclick="loadSampleCode('print')" class="example-button">Print Example</button>
+            <button onclick="loadSampleCode('assignment')" class="example-button">Assignment Example</button>
+            <button onclick="loadSampleCode('if_else')" class="example-button">If Else</button>
+            <button onclick="loadSampleCode('while')" class="example-button">While Loop</button>
+        </div>
         <form method="post">
-            <textarea name="code" rows="10" cols="50" class="code-input">{{ code }}</textarea><br>
-            <button type="submit">Run</button>
+            <textarea name="code" rows="10" cols="50" class="code-input" id="code" required>{{ code }}</textarea><br>
+            <button type="submit" class="run-button">RUN</button>
         </form>
         <div>
             <h2>Output:</h2>
             <pre>{{ output }}</pre>
         </div>
     </div>
+
+    <script>
+        function loadSampleCode(example) {
+            let codeTextarea = document.getElementById('code');
+            switch (example) {
+                case 'print':
+                    codeTextarea.value = "print(3);\nprint(3 + 5);\nprint(3 + 3.3);";
+                    break;
+                case 'assignment':
+                    codeTextarea.value = "a = 15;\nb = 30.5;\nc = a + b;\nprint(c);"
+                    break;
+                case 'if_else':
+                    codeTextarea.value = "if (500 > 1000 ) {\nprint(00000);\n}\nelse {\nprint(111111);\n};\n\na = 1000;\nif (a == 1000) {\nprint(1111);\n} else {\nprint(00000);\n};";
+                    break;
+                case 'while':
+                    codeTextarea.value = "x = 1;\nwhile (x <= 5) {\n    print(x);\n    x = x + 1;\n};";
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
 </body>
 </html>

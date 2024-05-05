@@ -23,6 +23,18 @@ Run the flask app using the command:
 
 The app will be running at `http://locolhost:5000`
 
+You can load the examples directly to test the compiler. 
+
+### Screenshots:
+
+Assignment Statement Example:
+
+![Assignment Statement](media/second.png)
+
+If Else Statement Example:
+
+![If Else Statement](media/first.png)
+
 
 # Syntax Documentation for Simple Programming Language
 
