@@ -1,8 +1,9 @@
 # Scribe Programming Language
 
 Submitted by:
-Sunil Prajapati (st124073)
-Biraj Koirala (st124371)
+Sunil Prajapati (st124073@ait.asia) (+66 0817373275)
+
+Biraj Koirala (st124371@ait.asia)
 
 ### Running the program
 Clone the repo using the command:
