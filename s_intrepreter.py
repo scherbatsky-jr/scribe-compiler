@@ -46,7 +46,7 @@ class Interpreter:
             left = float(left)
         elif isinstance(left, float) and isinstance(right, int):
             right = float(right)
-            
+
         if isinstance(left, (int, float)) and isinstance(right, (int, float)):
             if node.op == '+':
                 return left + right
@@ -103,6 +103,9 @@ class Interpreter:
             return left == right
         elif node.operator == '!=':
             return left != right
+        
+    def visit_BoolNode(self,node):
+        return node.value
 
     def visit_Block(self, node):
         for stmt in node.statements:

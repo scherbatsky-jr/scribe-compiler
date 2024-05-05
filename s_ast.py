@@ -28,6 +28,10 @@ class RelationalNode:
         self.left = left
         self.operator = operator
         self.right = right
+        
+class BoolNode:
+    def __init__(self,value):
+        self.value=value
 
 class VarAssignNode:
     def __init__(self, name, value):

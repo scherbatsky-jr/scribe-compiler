@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from s_lexer import tokens
-from s_ast import NumNode, BinOpNode, PrintNode, VarAssignNode, VarAccessNode, IfNode, WhileNode, RelationalNode
+from s_ast import NumNode, BinOpNode, PrintNode, VarAssignNode, VarAccessNode, IfNode, WhileNode, RelationalNode,BoolNode
 
 def p_program(p):
     '''
@@ -118,6 +118,10 @@ def p_while_statement(p):
 def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
+
+def p_expression_boolean(p):
+    'expression : BOOL'
+    p[0] = BoolNode(p[1])
 
 # def p_term_factor(p):
 #     '''

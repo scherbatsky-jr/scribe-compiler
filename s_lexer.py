@@ -4,7 +4,7 @@ tokens = (
     'NUMBER', 'IDENTIFIER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EQUALS',
     'LPAREN', 'RPAREN', 'PRINT', 'SEMICOLON', 'LBRACE', 'RBRACE',
     'GT', 'GTE', 'LT', 'LTE', 'EQUAL', 'NOTEQUAL',
-    'IF', 'ELSE', 'WHILE'
+    'IF', 'ELSE', 'WHILE','TRUE','FALSE','BOOL'
 )
 
 t_PLUS    = r'\+'
@@ -25,11 +25,15 @@ t_NOTEQUAL = r'!='
 t_LBRACE = r'\{'
 t_RBRACE = r'\}'
 
+
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
     'while': 'WHILE',
     'print': 'PRINT',
+    'true':'BOOL',
+    'false':'BOOL'
+
 }
 
 t_ignore = ' \t'
@@ -52,6 +56,7 @@ def t_INT(t):
 def t_BOOL(t):
     r'\btrue\b|\bfalse\b'
     t.value = True if t.value == 'true' else False
+    t.type = 'BOOL'
     return t
 
 def t_IDENTIFIER(t):
