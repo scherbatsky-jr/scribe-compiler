@@ -1,9 +1,10 @@
 # Scribe Programming Language
 
-Submitted by:
-Sunil Prajapati (st124073@ait.asia) (+66 0817373275)
-
-Biraj Koirala (st124371@ait.asia)
+Team Members:
+| ID | Name | Contact | Contributions |
+|----|------|--------|------|
+| st124073 | Sunil Prajapati | +66 0817373275 | App Gui, If Else Statement, While loop |
+| st124371 | Biraj Koirala | - | Dynamic Typing, Print Statment and Assignment |
 
 ### Running the program
 Clone the repo using the command:
