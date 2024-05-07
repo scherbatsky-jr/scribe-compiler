@@ -44,7 +44,7 @@ class Interpreter:
         right = self.visit(node.right)
         
         # type check both nodes before operation
-        if type(left) != type(right):
+        if type(left) != type(right) or isinstance(left, bool) or isinstance(right, bool):
             raise TypeError(f"Cannot perform '{node.op}' between types {type(left).__name__} and {type(right).__name__}")
 
         op = node.op
