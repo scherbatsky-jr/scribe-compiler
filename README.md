@@ -165,6 +165,7 @@ This document outlines the syntax of a simple programming language using Backus-
   ```
 
 
+## Grammar Tree
 
 <pre>
 program

@@ -42,23 +42,24 @@ class Interpreter:
     def visit_BinOpNode(self, node):
         left = self.visit(node.left)
         right = self.visit(node.right)
-        if isinstance(left, int) and isinstance(right, float):
-            left = float(left)
-        elif isinstance(left, float) and isinstance(right, int):
-            right = float(right)
+        
+        if type(left) != type(right):
+            raise TypeError(f"Cannot perform '{node.op}' between types {type(left).__name__} and {type(right).__name__}")
 
-        if isinstance(left, (int, float)) and isinstance(right, (int, float)):
-            if node.op == '+':
-                return left + right
-            elif node.op == '-':
-                return left - right
-            elif node.op == '*':
-                return left * right
-            elif node.op == '/':
-                return left / right
+        op = node.op
+        if op == '+':
+            return left + right
+        elif op == '-':
+            return left - right
+        elif op == '*':
+            return left * right
+        elif op == '/':
+            if right == 0:
+                raise ZeroDivisionError("division by zero")
+            return left / right
         else:
-            raise TypeError("Unsupported operand types")
-
+            raise ValueError(f"Unknown operator {op}")
+        
     def visit_PrintNode(self, node):
         value = self.visit(node.value)
         print(value)
