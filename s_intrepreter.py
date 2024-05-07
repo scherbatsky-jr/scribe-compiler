@@ -78,12 +78,16 @@ class Interpreter:
             raise NameError(f"Variable '{name}' not defined")
         
     def visit_IfNode(self, node):
-        condition_value = self.visit(node.condition)
-        if condition_value:
+        if self.visit(node.condition):
             return self.visit(node.then_branch)
-        elif node.else_branch is not None:
-            return self.visit(node.else_branch)
+        else:
+            for condition, branch in node.elif_branches:
+                if self.visit(condition):
+                    return self.visit(branch)
+            if node.else_branch:
+                return self.visit(node.else_branch)
 
+    
     def visit_WhileNode(self, node):
         while self.visit(node.condition):
             self.visit(node.body)

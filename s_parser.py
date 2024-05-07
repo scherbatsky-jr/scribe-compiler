@@ -101,13 +101,40 @@ def p_expression_number(p):
 
 def p_if_statement(p):
     '''
-    if_statement : IF LPAREN expression RPAREN block
-                 | IF LPAREN expression RPAREN block ELSE block
+    if_statement : if_part else_part
     '''
-    if len(p) == 6:
-        p[0] = IfNode(p[3], p[5])
+    p[0] = IfNode(p[1][0], p[1][1], p[1][2], p[2])
+
+def p_if_part(p):
+    '''
+    if_part : IF LPAREN expression RPAREN block elif_parts
+    '''
+    p[0] = (p[3], p[5], p[6])
+
+def p_elif_parts(p):
+    '''
+    elif_parts : elif_parts ELIF LPAREN expression RPAREN block
+               | empty
+    '''
+    if len(p) == 7:
+        p[0] = p[1] + [(p[4], p[6])]
     else:
-        p[0] = IfNode(p[3], p[5], p[7])
+        p[0] = []
+
+def p_else_part(p):
+    '''
+    else_part : ELSE block
+              | empty
+    '''
+    if len(p) == 3:
+        p[0] = p[2]
+    else:
+        p[0] = None
+
+def p_empty(p):
+    'empty :'
+    p[0] = None
+
 
 def p_while_statement(p):
     'while_statement : WHILE LPAREN expression RPAREN block'

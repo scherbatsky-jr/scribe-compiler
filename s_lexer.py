@@ -4,7 +4,7 @@ tokens = (
     'NUMBER', 'IDENTIFIER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EQUALS',
     'LPAREN', 'RPAREN', 'PRINT', 'SEMICOLON', 'LBRACE', 'RBRACE',
     'GT', 'GTE', 'LT', 'LTE', 'EQUAL', 'NOTEQUAL',
-    'IF', 'ELSE', 'WHILE','TRUE','FALSE','BOOL'
+    'IF', 'ELSE', 'WHILE','TRUE','FALSE','BOOL', 'ELIF'
 )
 
 t_PLUS    = r'\+'
@@ -25,15 +25,14 @@ t_NOTEQUAL = r'!='
 t_LBRACE = r'\{'
 t_RBRACE = r'\}'
 
-
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
     'while': 'WHILE',
     'print': 'PRINT',
     'true':'BOOL',
-    'false':'BOOL'
-
+    'false':'BOOL',
+    'elif': 'ELIF'
 }
 
 t_ignore = ' \t'

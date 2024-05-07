@@ -13,10 +13,15 @@ class PrintNode:
         self.value = value
 
 class IfNode:
-    def __init__(self, condition, then_branch, else_branch=None):
+    def __init__(self, condition, then_branch, elif_branches=None, else_branch=None):
         self.condition = condition
         self.then_branch = then_branch
+        self.elif_branches = elif_branches if elif_branches else []
         self.else_branch = else_branch
+
+    def __repr__(self):
+        return f"IfNode(condition={self.condition}, then_branch={self.then_branch}, elif_branches={self.elif_branches}, else_branch={self.else_branch})"
+
 
 class WhileNode:
     def __init__(self, condition, body):
