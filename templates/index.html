@@ -51,12 +51,23 @@
         <h1>Scribe Programming Language</h1>
     </div>
     <div class="content">
-        <div class="examples">
-            <h3>Examples:</h3>
-            <button onclick="loadSampleCode('print')" class="example-button">Print Example</button>
-            <button onclick="loadSampleCode('assignment')" class="example-button">Assignment Example</button>
-            <button onclick="loadSampleCode('if_else')" class="example-button">If Else</button>
-            <button onclick="loadSampleCode('while')" class="example-button">While Loop</button>
+        <div>
+            <div class="examples">
+                <h3>Examples:</h3>
+                <button onclick="loadSampleCode('print')" class="example-button">Print Example</button>
+                <button onclick="loadSampleCode('assignment')" class="example-button">Assignment Example</button>
+                <button onclick="loadSampleCode('if_else')" class="example-button">If Else</button>
+                <button onclick="loadSampleCode('while')" class="example-button">While Loop</button>
+            </div>
+            <div class="test-cases">
+                <h3>Test Cases</h3>
+                <button onclick="loadSampleCode('1')">1</button>
+                <button onclick="loadSampleCode('2')">2</button>
+                <button onclick="loadSampleCode('3')">3</button>
+                <button onclick="loadSampleCode('4')">4</button>
+                <button onclick="loadSampleCode('5')">5</button>
+                <button onclick="loadSampleCode('6')">6</button>
+            </div>
         </div>
         <form method="post">
             <textarea name="code" rows="10" cols="50" class="code-input" id="code" required>{{ code }}</textarea><br>
@@ -83,6 +94,24 @@
                     break;
                 case 'while':
                     codeTextarea.value = "x = 1;\nwhile (x <= 5) {\n    print(x);\n    x = x + 1;\n};";
+                    break;
+                case '1':
+                    codeTextarea.value = "print(true);";
+                    break;
+                case '2':
+                    codeTextarea.value = "print(1 + true);";
+                    break;
+                case '3':
+                    codeTextarea.value = "print(1 + (1==1))";
+                    break;
+                case '4':
+                    codeTextarea.value = `x = 5;\nwhile(x > 0) {\nprint(x);\nx = x - 1;\n};`
+                    break;
+                case '5':
+                    codeTextarea.value = "x = 5;\nf = 1;\nwhile(x > 0) {\nf = f * x;\nx = x - 1;\n};\nprint(f);\n"
+                    break;
+                case '6':
+                    codeTextarea.value = "x = 5;\nf = true;\nwhile(x > 0) {\nf = f * x;\nx = x - 1;\n};\nprint(f);\n"
                     break;
                 default:
                     break;
