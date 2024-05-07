@@ -49,6 +49,7 @@ This document outlines the syntax of a simple programming language using Backus-
 - Boolean operation
 - Relational Operations (Greater than, greater or equal to, less than, less than or equal to, equal to, not equal to)
 - While loop
+- Type Check (All the arithmetic operations can be conducted between same type only)
 
 
 ## Terminals
