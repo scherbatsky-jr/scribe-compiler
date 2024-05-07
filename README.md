@@ -166,3 +166,37 @@ This document outlines the syntax of a simple programming language using Backus-
 
 
 
+<pre>
+program
+└── statement_list
+    └── statement
+        ├── print_statement
+        │   └── PRINT LPAREN expression RPAREN
+        ├── assignment_statement
+        │   └── IDENTIFIER EQUALS expression
+        ├── expression_statement
+        │   └── expression
+        ├── if_statement
+        │   ├── IF LPAREN expression RPAREN block
+        │   └── IF LPAREN expression RPAREN block ELSE block
+        └── while_statement
+            └── WHILE LPAREN expression RPAREN block
+
+expression
+├── expression PLUS expression
+├── expression MINUS expression
+├── expression TIMES expression
+├── expression DIVIDE expression
+├── expression GT expression
+├── expression GTE expression
+├── expression LT expression
+├── expression LTE expression
+├── expression EQUAL expression
+├── expression NOTEQUAL expression
+├── LPAREN expression RPAREN
+├── IDENTIFIER
+└── BOOL
+
+block
+└── statement_list
+</pre>
